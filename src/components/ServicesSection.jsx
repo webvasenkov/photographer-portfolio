@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { About, Description, Image } from '../styles';
+import { useScroll } from './useScroll';
+import { fadeAnimation } from '../animation';
 import clock from '../assets/images/clock.svg';
 import diaphragm from '../assets/images/diaphragm.svg';
 import money from '../assets/images/money.svg';
@@ -8,8 +10,10 @@ import teamwork from '../assets/images/teamwork.svg';
 import home2 from '../assets/images/home2.png';
 
 const ServicesSection = () => {
+  const [element, controls] = useScroll();
+
   return (
-    <Services className='services'>
+    <Services className='services' ref={element} variants={fadeAnimation} animate={controls}>
       <Description>
         <h2>
           Hight <span>quality</span> services

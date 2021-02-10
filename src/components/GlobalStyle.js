@@ -58,6 +58,10 @@ p {
     font-size: 1.4rem;
     line-height: 150%;
 }
+
+.App {
+    overflow: hidden;
+}
 `;
 
 export default GlobalStyle;

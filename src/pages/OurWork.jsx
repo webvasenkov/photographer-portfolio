@@ -1,61 +1,62 @@
 import React from 'react';
+import { Movie } from '../components';
+import { motion } from 'framer-motion';
+import { pageAnimation, sliderAnimation, slideAnimation } from '../animation';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import athlete from '../assets/images/athlete-small.png';
-import theracer from '../assets/images/theracer-small.png';
-import goodtimes from '../assets/images/goodtimes-small.png';
 
-const OurWork = () => {
+const OurWork = ({ movies }) => {
+  const movieList = movies.map((movie, index) => {
+    const { title, mainImg, url } = movie;
+    return <Movie key={movie.title} title={title} mainImg={mainImg} url={url} index={index} />;
+  });
+
   return (
-    <Work>
-      <Movie>
-        <h2>The athlete</h2>
-        <div className='line'></div>
-        <Link to='/work/the-athlete'>
-          <img src={athlete} alt='athlete' />
-        </Link>
-      </Movie>
-      <Movie>
-        <h2>The racer</h2>
-        <div className='line'></div>
-        <Link to='/work/the-racer'>
-          <img src={theracer} alt='theracer' />
-        </Link>
-      </Movie>
-      <Movie>
-        <h2>Good Times</h2>
-        <div className='line'></div>
-        <Link to='/work/good-times'>
-          <img src={goodtimes} alt='goodtimes' />
-        </Link>
-      </Movie>
+    <Work variants={pageAnimation} initial='initial' animate='animate' exit='exit'>
+      <Frames variants={sliderAnimation}>
+        <Frame1 variants={slideAnimation} />
+        <Frame2 variants={slideAnimation} />
+        <Frame3 variants={slideAnimation} />
+        <Frame4 variants={slideAnimation} />
+      </Frames>
+      {movieList}
     </Work>
   );
 };
 
-const Work = styled.div`
+const Work = styled(motion.div)`
   min-height: 100vh;
   overflow: hidden;
   padding: 5rem 10rem;
+  background-color: #fff;
 
   h2 {
     padding: 1rem 0;
   }
 `;
 
-const Movie = styled.div`
-  padding-bottom: 10rem;
-  .line {
-    height: 0.5rem;
-    background-color: #ccc;
-    margin-bottom: 3rem;
-  }
-
-  img {
-    width: 100%;
-    height: 70vh;
-    object-fit: cover;
-  }
+// Frame Animation
+const Frames = styled(motion.div)`
+  z-index: 2;
 `;
+
+const Frame1 = styled(motion.div)`
+  position: fixed;
+  top: 10%;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fffebf;
+  z-index: 2;
+`;
+
+const createFrame = (color) => {
+  return styled(Frame1)`
+    background-color: ${color};
+  `;
+};
+
+const Frame2 = createFrame('#ff8efb');
+const Frame3 = createFrame('#8ed2ff');
+const Frame4 = createFrame('#8effa0');
 
 export default OurWork;
