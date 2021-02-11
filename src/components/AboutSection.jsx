@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { titleAnimation, fadeAnimation, photoAnimation } from '../animation';
 import { About, Description, Hide, Image } from '../styles';
@@ -25,7 +26,9 @@ const AboutSection = () => {
         <motion.p variants={fadeAnimation}>
           Contact us for any photography or videography ideas that you have. We have professionals with amazing skills.
         </motion.p>
-        <motion.button variants={fadeAnimation}>Contact us</motion.button>
+        <Link to='/contact'>
+          <motion.button variants={fadeAnimation}>Contact us</motion.button>
+        </Link>
       </Description>
       <Image className='image'>
         <motion.img variants={photoAnimation} src={home1} alt='Gay with a camera' />

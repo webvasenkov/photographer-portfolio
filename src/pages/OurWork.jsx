@@ -3,6 +3,7 @@ import { Movie } from '../components';
 import { motion } from 'framer-motion';
 import { pageAnimation, sliderAnimation, slideAnimation } from '../animation';
 import styled from 'styled-components';
+import { ScrollTop } from '../components';
 
 const OurWork = ({ movies }) => {
   const movieList = movies.map((movie, index) => {
@@ -19,6 +20,7 @@ const OurWork = ({ movies }) => {
         <Frame4 variants={slideAnimation} />
       </Frames>
       {movieList}
+      <ScrollTop />
     </Work>
   );
 };
@@ -27,10 +29,13 @@ const Work = styled(motion.div)`
   min-height: 100vh;
   overflow: hidden;
   padding: 5rem 10rem;
-  background-color: #fff;
 
   h2 {
     padding: 1rem 0;
+  }
+
+  @media (max-width: 1300px) {
+    padding: 2rem;
   }
 `;
 

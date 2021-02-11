@@ -1,12 +1,10 @@
 export const pageAnimation = {
   initial: {
     opacity: 0,
-    y: 200,
   },
 
   animate: {
     opacity: 1,
-    y: 0,
     transition: {
       duration: 0.5,
       when: 'beforeChildren',
@@ -20,6 +18,25 @@ export const pageAnimation = {
   },
 };
 
+export const mobileAnimation = {
+  initial: {
+    opacity: 0,
+    scale: 1.2,
+  },
+
+  animate: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.3, when: 'beforeChildren', staggerChildren: 0.25 },
+  },
+
+  exit: {
+    scale: 1.2,
+    opacity: 0,
+    transition: { duration: 0.3 },
+  },
+};
+
 export const titleAnimation = {
   initial: {
     y: 200,
@@ -27,7 +44,7 @@ export const titleAnimation = {
 
   animate: {
     y: 0,
-    transition: { duration: 0.75, ease: 'easeOut' },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 };
 
@@ -47,6 +64,7 @@ export const photoAnimation = {
   initial: {
     scale: 1.5,
     opacity: 0,
+    transition: { duration: 0.75, ease: 'easeOut' },
   },
   animate: {
     scale: 1,
@@ -65,17 +83,6 @@ export const waveAnimation = {
     pathLength: 1,
     pathOffset: 0,
     transition: { duration: 1, ease: 'easeOut' },
-  },
-};
-
-export const lineAnimation = {
-  initial: {
-    width: '0%',
-  },
-
-  animate: {
-    width: '100%',
-    transition: { duration: 1 },
   },
 };
 
@@ -99,7 +106,7 @@ export const sliderAnimation = {
 
   animate: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, ease: 'easeOut' },
+    transition: { staggerChildren: 0.15, ease: 'easeOut' },
   },
 };
 
@@ -116,3 +123,15 @@ export const zoomAnimation = {
     transition: { duration: 0.75, ease: 'easeOut' },
   },
 };
+
+export const lineAnimation = (targetPath, currentPath) => ({
+  initial: {
+    width: '0%',
+  },
+
+  animate: {
+    width: targetPath === currentPath ? '33%' : '0%',
+  },
+
+  transition: { duration: 0.75 },
+});

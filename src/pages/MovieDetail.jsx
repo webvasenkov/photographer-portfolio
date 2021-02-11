@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../animation';
-import { movieState } from '../movieState';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import { ScrollTop } from '../components';
 
-const MovieDetail = ({movies}) => {
+const MovieDetail = ({ movies }) => {
   const history = useHistory();
   const url = history.location.pathname;
 
@@ -34,6 +34,7 @@ const MovieDetail = ({movies}) => {
       <ImageDisplay>
         <img src={movie.secondaryImg} alt={movie.title} />
       </ImageDisplay>
+      <ScrollTop />
     </Details>
   );
 };
@@ -51,7 +52,9 @@ const HeadLine = styled.div`
     position: absolute;
     top: 10%;
     left: 50%;
-    transform: translate(-50%, -10%);
+    transform: translate(-50%, -65%);
+    font-weight: 700;
+    font-size: 3rem;
   }
 
   img {
@@ -66,8 +69,16 @@ const Awards = styled.ul`
   min-height: 80vh;
   display: flex;
   margin: 5rem 10rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
+
+  @media (max-width: 1300px) {
+    margin: 5rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const AwardStyle = styled.li`

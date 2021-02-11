@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { pageAnimation } from '../animation';
-import { AboutSection, ServicesSection, FaqSection } from '../components';
+import { AboutSection, ServicesSection, FaqSection, ScrollTop } from '../components';
 
 const AboutUs = () => {
   return (
@@ -9,6 +9,7 @@ const AboutUs = () => {
       <AboutSection />
       <ServicesSection />
       <FaqSection />
+      <ScrollTop />
     </motion.div>
   );
 };

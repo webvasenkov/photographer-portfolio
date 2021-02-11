@@ -3,16 +3,15 @@ import styled from 'styled-components';
 import { useScroll } from './useScroll';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { fadeAnimation, lineAnimation, photoAnimation } from '../animation';
+import { fadeAnimation, photoAnimation } from '../animation';
 
 const Movie = ({ title, mainImg, url, index }) => {
   const [element, controls] = useScroll();
 
   return (
     <MovieContainer ref={element} animate={controls} variants={fadeAnimation}>
-      <motion.h2 variants={fadeAnimation}>{title}</motion.h2>
-      <motion.div variants={lineAnimation} className='line'></motion.div>
       <Link to={url}>
+        <Title variants={fadeAnimation}>{title}</Title>
         <Image>
           <motion.img variants={photoAnimation} src={mainImg} alt={title} />
         </Image>
@@ -22,22 +21,44 @@ const Movie = ({ title, mainImg, url, index }) => {
 };
 
 const MovieContainer = styled(motion.div)`
+  position: relative;
   padding-bottom: 10rem;
-  .line {
-    height: 0.5rem;
-    background-color: #23d997;
-    margin-bottom: 3rem;
+
+  @media (max-width: 1300px) {
+    padding-bottom: 5rem;
   }
 
   img {
     width: 100%;
     height: 70vh;
     object-fit: cover;
+    filter: brightness(70%);
+    @media (max-width: 468px) {
+      height: 50vh;
+    }
+  }
+`;
+
+const Title = styled(motion.h2)`
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -35%);
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 1;
+  color: #fff;
+
+  @media (max-width: 468px) {
+    top: 25%;
+    transform: translate(-50%, -25%);
+    font-size: 2rem;
   }
 `;
 
 const Image = styled.div`
   overflow: hidden;
+  border-radius: 15px;
 `;
 
 export default Movie;
